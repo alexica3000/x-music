@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Interfaces\HasRolesInterface;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,12 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+/**
+ * Class User
+ * @package App\Models
+ * @property int $role_id
+ */
+class User extends Authenticatable implements HasRolesInterface
 {
     use HasApiTokens;
     use HasFactory;
@@ -58,4 +64,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role_id == self::ROLE_ADMIN;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoleAttribute(): string
+    {
+        return self::ROLES[$this->role_id] ?? 'User';
+    }
 }
