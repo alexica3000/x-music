@@ -1,9 +1,13 @@
 <?php
 
+use App\Interfaces\HasRolesInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateUsersTable
+ */
 class CreateUsersTable extends Migration
 {
     /**
@@ -17,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->tinyInteger('role_id')->default(HasRolesInterface::ROLE_USER);
+            $table->string('company')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

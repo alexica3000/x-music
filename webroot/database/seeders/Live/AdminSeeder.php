@@ -1,11 +1,15 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Live;
 
 use App\Interfaces\HasRolesInterface;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class AdminSeeder
+ * @package Database\Seeders\Live
+ */
 class AdminSeeder extends Seeder
 {
     const ADMIN_EMAIL = 'admin@admin.com';
