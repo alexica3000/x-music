@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Interfaces\HasRolesInterface;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,6 +16,12 @@ use Laravel\Sanctum\HasApiTokens;
  * Class User
  * @package App\Models
  * @property int $role_id
+ * @property string $name
+ * @property string $email
+ * @property string $logo
+ * @property string $role
+ * @property Carbon $created_at
+ * @property bool $is_active
  */
 class User extends Authenticatable implements HasRolesInterface
 {
@@ -23,6 +30,10 @@ class User extends Authenticatable implements HasRolesInterface
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    protected $perPage = 20;
+
+    const DEFAULT_ICON = '/images/default_user.png';
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +65,7 @@ class User extends Authenticatable implements HasRolesInterface
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime',
     ];
 
     /**
@@ -79,5 +91,10 @@ class User extends Authenticatable implements HasRolesInterface
     public function getRoleAttribute(): string
     {
         return self::ROLES[$this->role_id] ?? 'User';
+    }
+
+    public function getLogourlAttribute()
+    {
+        return empty($this->icon_url) ? asset(self::DEFAULT_ICON) : $this->icon_url;
     }
 }
