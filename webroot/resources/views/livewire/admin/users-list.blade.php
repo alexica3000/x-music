@@ -23,9 +23,9 @@
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-
+                                            @php // todo: add icon @endphp
+                                            icon
                                         </div>
-                                        <span class="font-medium">React Project</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
