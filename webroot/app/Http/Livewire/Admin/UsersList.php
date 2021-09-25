@@ -8,6 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 /**
  * Class UsersList
@@ -15,6 +16,8 @@ use Livewire\Component;
  */
 class UsersList extends Component
 {
+    use WithPagination;
+
     /**
      * @return Application|Factory|View
      */
@@ -28,6 +31,8 @@ class UsersList extends Component
      */
     public function getUsers(): LengthAwarePaginator
     {
-        return User::query()->paginate();
+        return User::query()
+            ->orderByDesc('id')
+            ->paginate();
     }
 }

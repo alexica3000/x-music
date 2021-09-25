@@ -93,8 +93,11 @@ class User extends Authenticatable implements HasRolesInterface
         return self::ROLES[$this->role_id] ?? 'User';
     }
 
-    public function getLogourlAttribute()
+    /**
+     * @return string
+     */
+    public function getLogoUrlAttribute(): string
     {
-        return empty($this->icon_url) ? asset(self::DEFAULT_ICON) : $this->icon_url;
+        return empty($this->logo) ? asset(self::DEFAULT_ICON) : $this->logo;
     }
 }

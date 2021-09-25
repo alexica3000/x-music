@@ -37,6 +37,7 @@ class UserFactory extends Factory
             'remember_token'    => Str::random(10),
             'role_id'           => HasRolesInterface::ROLE_USER,
             'is_active'         => $this->faker->boolean,
+            'created_at'        => $this->faker->dateTimeBetween('-1 year', now()),
         ];
     }
 
