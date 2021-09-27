@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('/dashboard')->middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::view('/', 'dashboard')->name('dashboard');
+
+    Route::middleware(['isAdmin'])->group(function() {
+        Route::resource('users', AdminUserController::class);
+    });
 });
