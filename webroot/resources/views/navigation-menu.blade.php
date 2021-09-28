@@ -17,7 +17,7 @@
                     </x-jet-nav-link>
 
                     @if(auth()->user()->isAdmin())
-                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                        <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
                             {{ __('Users') }}
                         </x-jet-nav-link>
                     @endif
