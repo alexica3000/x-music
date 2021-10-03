@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -28,31 +29,13 @@ class AdminUserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(Request $request)
-    {
-        dd($request->all());
-    }
-
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return View
      */
-    public function show($id)
+    public function edit(User $user): View
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**

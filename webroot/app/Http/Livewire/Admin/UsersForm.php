@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Interfaces\HasRolesInterface;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -13,17 +15,13 @@ use Livewire\Component;
 class UsersForm extends Component
 {
     public User $user;
-    public string $password;
-    public string $password_confirmation;
 
-    protected array $rules = [
-        'user.name'               => 'required|string|max:255',
-        'user.email'              => 'required|email|confirmed|unique:users,id,email',
-        'user.email_confirmation' => 'required|email',
-        'user.is_active'          => 'sometimes|boolean',
-        'user.is_admin'           => 'sometimes|boolean',
-        'password'                => 'required|string|confirmed|max:255',
-        'password_confirmation'   => 'required|string|max:255',
+    public array $state = [
+        'password'              => '',
+        'password_confirmation' => '',
+        'is_admin'              => '',
+        'email'                 => '',
+        'email_confirmation'    => '',
     ];
 
     /**
@@ -32,8 +30,9 @@ class UsersForm extends Component
     public function mount($user): void
     {
         $this->user = $user;
-        $this->password = '';
-        $this->password_confirmation = '';
+        $this->state['email'] = $user->email;
+        $this->state['email_confirmation'] = $user->email;
+        $this->state['is_admin'] = $user->role_id == HasRolesInterface::ROLE_ADMIN;
     }
 
     /**
@@ -44,16 +43,43 @@ class UsersForm extends Component
         return view('livewire.admin.users-form');
     }
 
+    /**
+     * @param $propertyName
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function save(): void
     {
+        $this->validate();
+
         $data = [
-            'name'           => $this->user->name,
-            'email'          => $this->user->email,
-            'user.is_active' => false,
-            'user.is_admin'  => false,
-            'password'       => $this->password,
+            'name'      => $this->user->name,
+            'email'     => $this->state['email'],
+            'is_active' => $this->user->is_active,
+            'role_id'   => $this->state['is_admin'] ? HasRolesInterface::ROLE_ADMIN : HasRolesInterface::ROLE_USER,
         ];
 
-        User::query()->create($data);
+        if (!empty($this->state['password'])) {
+            $data['password'] = Hash::make($this->state['password']);
+        }
+
+        $this->user->id ? $this->user->update($data) : User::query()->create($data);
+    }
+
+    public function rules(): array
+    {
+        $passwordRules = $this->user->id ? 'sometimes|string|confirmed|max:255' : 'required|string|confirmed|max:255';
+
+        return [
+            'user.name'      => 'required|string|max:255',
+            'state.email'    => 'required|email|confirmed|unique:users,id,email',
+            'user.is_active' => 'sometimes|nullable|boolean',
+            'state.is_admin' => 'sometimes|nullable|boolean',
+            'state.password' => $passwordRules,
+        ];
     }
 }

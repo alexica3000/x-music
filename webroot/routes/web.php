@@ -25,6 +25,7 @@ Route::prefix('/dashboard')->middleware(['auth:sanctum', 'verified'])->group(fun
         Route::prefix('users')->name('users.')->group(function() {
             Route::get('/', [AdminUserController::class, 'index'])->name('index');
             Route::get('create', [AdminUserController::class, 'create'])->name('create');
+            Route::get('edit/{user}', [AdminUserController::class, 'edit'])->name('edit');
         });
 
 //        Route::resource('users', AdminUserController::class);

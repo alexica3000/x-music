@@ -15,6 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * Class User
  * @package App\Models
+ * @property int $id
  * @property int $role_id
  * @property string $name
  * @property string $email
@@ -44,6 +45,7 @@ class User extends Authenticatable implements HasRolesInterface
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
