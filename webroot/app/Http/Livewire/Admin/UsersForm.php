@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Http\Livewire\Components\Notification;
 use App\Interfaces\HasRolesInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -68,6 +69,7 @@ class UsersForm extends Component
         }
 
         $this->user->id ? $this->user->update($data) : User::query()->create($data);
+        $this->emit('showNotification', 'User has been saved.');
     }
 
     public function rules(): array
