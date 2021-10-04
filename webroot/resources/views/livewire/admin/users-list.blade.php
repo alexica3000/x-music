@@ -15,6 +15,7 @@
                             <th class="py-3 px-6 text-center">Created At</th>
                             <th class="py-3 px-6 text-center">Role</th>
                             <th class="py-3 px-6 text-center">Active</th>
+                            <th class="py-3 px-6 text-center">Edit</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
@@ -44,6 +45,15 @@
                                     @if($user->is_active)
                                         <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">Active</span>
                                     @endif
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                        <a href="{{ route('admin.users.edit', $user) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

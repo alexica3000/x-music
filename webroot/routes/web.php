@@ -21,7 +21,13 @@ Route::get('/', function () {
 Route::prefix('/dashboard')->middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::view('/', 'dashboard')->name('dashboard');
 
-    Route::middleware(['isAdmin'])->group(function() {
-        Route::resource('users', AdminUserController::class);
+    Route::middleware(['isAdmin'])->name('admin.')->group(function() {
+        Route::prefix('users')->name('users.')->group(function() {
+            Route::get('/', [AdminUserController::class, 'index'])->name('index');
+            Route::get('create', [AdminUserController::class, 'create'])->name('create');
+            Route::get('edit/{user}', [AdminUserController::class, 'edit'])->name('edit');
+        });
+
+//        Route::resource('users', AdminUserController::class);
     });
 });
