@@ -16,6 +16,7 @@ use Livewire\Component;
 class UsersForm extends Component
 {
     public User $user;
+    public bool $confirmingUserDeletion = false;
 
     public array $state = [
         'password'              => '',
@@ -83,5 +84,17 @@ class UsersForm extends Component
             'state.is_admin' => 'sometimes|nullable|boolean',
             'state.password' => $passwordRules,
         ];
+    }
+
+    public function deleteConfirm(): void
+    {
+        $this->confirmingUserDeletion = true;
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.users.index');
     }
 }
