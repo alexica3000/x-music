@@ -18,12 +18,21 @@
                 </svg>
             </button>
         </div>
-        <div class="ml-5 w-1/4">
+        <div class="ml-5 w-1/6">
             <label>
                 <select class="form-select block w-full rounded shadow-md border-gray-400 h-10" wire:model="role_id">
                     <option value="">Role</option>
                     <option value="{{ \App\Interfaces\HasRolesInterface::ROLE_ADMIN }}">Admin</option>
                     <option value="{{ \App\Interfaces\HasRolesInterface::ROLE_USER }}">User</option>
+                </select>
+            </label>
+        </div>
+        <div class="ml-5 w-1/6">
+            <label>
+                <select class="form-select block w-full rounded shadow-md border-gray-400 h-10" wire:model="active">
+                    <option value="">Is active</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
                 </select>
             </label>
         </div>

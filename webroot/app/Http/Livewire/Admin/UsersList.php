@@ -21,6 +21,7 @@ class UsersList extends Component
 
     public string $search = '';
     public ?string $role_id = null;
+    public ?string $active = null;
 
     /**
      * @return Application|Factory|View
@@ -47,6 +48,7 @@ class UsersList extends Component
             ->when($this->role_id, function (Builder $query) {
                 return $query->where('role_id', $this->role_id);
             })
+            ->when($this->active != null, fn(Builder $query) => $query->where('is_active', $this->active))
             ->orderByDesc('id')
             ->paginate();
     }

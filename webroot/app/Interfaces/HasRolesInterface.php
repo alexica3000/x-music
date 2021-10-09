@@ -2,6 +2,10 @@
 
 namespace App\Interfaces;
 
+/**
+ * Interface HasRolesInterface
+ * @package App\Interfaces
+ */
 interface HasRolesInterface
 {
     public const ROLE_ADMIN = 1;
