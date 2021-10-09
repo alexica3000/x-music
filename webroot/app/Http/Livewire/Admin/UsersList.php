@@ -20,6 +20,7 @@ class UsersList extends Component
     use WithPagination;
 
     public string $search = '';
+    public ?string $role_id = null;
 
     /**
      * @return Application|Factory|View
@@ -42,6 +43,9 @@ class UsersList extends Component
         return User::query()
             ->when($this->search, function(Builder $query) {
                 return $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->when($this->role_id, function (Builder $query) {
+                return $query->where('role_id', $this->role_id);
             })
             ->orderByDesc('id')
             ->paginate();
