@@ -52,4 +52,11 @@ class UsersList extends Component
             ->orderByDesc('id')
             ->paginate();
     }
+
+    public function resetValues(): void
+    {
+        $this->search = '';
+        $this->role_id = null;
+        $this->active = null;
+    }
 }

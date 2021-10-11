@@ -36,6 +36,15 @@
                 </select>
             </label>
         </div>
+        <div class="ml-5 w-1/6">
+            <label>
+                <button
+                    type="button"
+                    class="block w-full rounded shadow-md border-green-400 h-10 bg-green-400 hover:bg-green-300 text-white"
+                    wire:click="resetValues()"
+                >Reset</button>
+            </label>
+        </div>
     </div>
     <div class="min-w-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
         <div class="w-full mx-4">
