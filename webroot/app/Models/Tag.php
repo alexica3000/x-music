@@ -12,4 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'is_live', 'tags_type_id'];
+
+    public function tagsType()
+    {
+        return $this->belongsTo(TagsType::class, 'tags_type_id');
+    }
 }

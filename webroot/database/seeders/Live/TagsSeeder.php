@@ -20,14 +20,14 @@ class TagsSeeder extends Seeder
      */
     public function run()
     {
-        foreach (Arr::only(TagsTypeSeeder::TAGS, ['name']) as $tag_type_name) {
+        foreach (Arr::pluck(TagsTypeSeeder::TAGS, ['name']) as $tag_type_name) {
             $tags_type = TagsType::query()->where('name', $tag_type_name)->first();
 
             if(!empty($tags_type) AND isset($this->getData()[$tag_type_name])) {
                 foreach ($this->getData()[$tag_type_name] as $tags_name) {
                     $tag = new Tag([
                         'name' => $tags_name,
-                        'live' => 1
+                        'is_live' => 1
                     ]);
 
                     $tags_type->tags()->save($tag);
