@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Class TagsType
  * @package App\Models
+ * @property string $name
+ * @property int $sort
+ * @property int score
  */
 class TagsType extends Model
 {

@@ -95,6 +95,9 @@
                                 {{ __('Admin Menu') }}
                             </div>
 
+                            <x-jet-dropdown-link href="{{ route('admin.tags-type.index') }}">
+                                {{ __('Tags Type') }}
+                            </x-jet-dropdown-link>
                             <x-jet-dropdown-link href="{{ route('admin.users.index') }}">
                                 {{ __('Users') }}
                             </x-jet-dropdown-link>
