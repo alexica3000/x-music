@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\TagsType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * Class TagSeeder
@@ -21,13 +22,15 @@ class TagsSeeder extends Seeder
     public function run()
     {
         foreach (Arr::pluck(TagsTypeSeeder::TAGS, ['name']) as $tag_type_name) {
+            /** @var TagsType $tags_type */
             $tags_type = TagsType::query()->where('name', $tag_type_name)->first();
 
             if(!empty($tags_type) AND isset($this->getData()[$tag_type_name])) {
                 foreach ($this->getData()[$tag_type_name] as $tags_name) {
                     $tag = new Tag([
-                        'name' => $tags_name,
-                        'is_live' => 1
+                        'name'    => $tags_name,
+                        'is_live' => 1,
+                        'slug'    => Str::slug($tags_name),
                     ]);
 
                     $tags_type->tags()->save($tag);
