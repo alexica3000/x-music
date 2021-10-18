@@ -19,7 +19,7 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'is_live', 'tags_type_id'];
+    protected $fillable = ['name', 'slug', 'is_live', 'tags_type_id'];
     protected $perPage = 20;
 
     /**
