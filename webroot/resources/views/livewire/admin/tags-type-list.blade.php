@@ -9,29 +9,25 @@
                 <table class="min-w-max w-full table-auto">
                     <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left">ID</th>
-                        <th class="py-3 px-6 text-left">Name</th>
-                        <th class="py-3 px-6 text-center">Sort</th>
-                        <th class="py-3 px-6 text-center">Score</th>
+                        <th class="py-2 px-6 text-left">Name</th>
+                        <th class="py-2 px-6 text-center">Sort</th>
+                        <th class="py-2 px-6 text-center">Score</th>
                         <th class="py-3 px-6 text-center">Edit</th>
                     </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                     @foreach($tagTypes as $type)
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-left">
-                                <span>{{ $type->id }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            <td class="py-2 px-6 text-left">
                                 <span>{{ $type->name }}</span>
                             </td>
-                            <td class="py-3 px-6 text-center">
+                            <td class="py-2 px-6 text-center">
                                 {{ $type->sort }}
                             </td>
-                            <td class="py-3 px-6 text-center">
+                            <td class="py-2 px-6 text-center">
                                 {{ $type->score }}
                             </td>
-                            <td class="py-3 px-6 text-center">
+                            <td class="py-2 px-6 text-center">
                                 <div class="w-4 m-auto transform hover:text-purple-500 hover:scale-110">
                                     <a href="{{ route('admin.tags-type.edit', $type) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
