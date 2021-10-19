@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Tag;
 use App\Models\TagsType;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -31,6 +32,7 @@ class TagForm extends Component
     public function save(): void
     {
         $data = $this->validate();
+        $data['tag']['slug'] = Str::slug($data['tag']['name']);
 
         $this->tag->id ? $this->tag->update($data['tag']) : Tag::query()->create($data['tag']);
         $this->emit('showNotification', 'Tag type has been saved.');
@@ -41,7 +43,7 @@ class TagForm extends Component
         return [
             'tag.name'         => 'required|string|max:50',
             'tag.tags_type_id' => 'required|integer|exists:tags_types,id',
-//            'tag.live'         => 'sometimes|accepted',
+            'tag.is_live'      => 'sometimes|nullable|boolean',
             'tag.slug'         => 'nullable|string|max:50',
         ];
     }

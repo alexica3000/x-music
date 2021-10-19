@@ -45,13 +45,29 @@
         <div class="col-span-2">
             <label>
                 <select class="form-select block w-full rounded shadow-md border-gray-400 h-10" wire:model="tag.tags_type_id">
-                    <option value="" disabled>Choose Type</option>
+                    <option value="">Choose Type</option>
                     @foreach($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
                 </select>
             </label>
             <p class="text-xs italic text-red-500 mt-1">@error('tag.tags_type_id') {{ $message }} @enderror</p>
+        </div>
+
+        <div>
+            <label class="block mb-2 text-sm font-bold text-gray-700">
+                Live
+            </label>
+        </div>
+        <div class="col-span-2">
+            <label class="inline-flex items-center">
+                <input
+                    type="checkbox"
+                    class="form-checkbox text-indigo-600 @error('tag.is_live') border-red-500 @enderror"
+                    wire:model="tag.is_live"
+                >
+            </label>
+            <p class="text-xs italic text-red-500 mt-1">@error('tag.is_live') {{ $message }} @enderror</p>
         </div>
 
         <div class="col-span-3 text-center border-1 border-red-800 mt-5">
