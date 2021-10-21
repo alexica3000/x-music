@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $slug
  * @property Collection|TagsType[] $tagsType
+ * @property bool $is_live
  */
 class Tag extends Model
 {

@@ -12,6 +12,7 @@
                             <th class="py-2 px-6 text-left">Name</th>
                             <th class="py-2 px-6 text-center">Slug</th>
                             <th class="py-2 px-6 text-center">Type</th>
+                            <th class="py-2 px-6 text-center">Live</th>
                             <th class="py-2 px-6 text-center">Edit</th>
                         </tr>
                     </thead>
@@ -30,6 +31,13 @@
                                 </td>
                                 <td class="py-2 px-6 text-left">
                                     {{ $tag->tagsType->name }}
+                                </td>
+                                <td class="py-2 px-6 text-left">
+                                    @if($tag->is_live)
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    @endif
                                 </td>
                                 <td class="py-2 px-6 text-center">
                                     <div class="w-4 m-auto transform hover:text-purple-500 hover:scale-110">
