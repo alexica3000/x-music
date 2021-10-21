@@ -15,12 +15,6 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-
-                    @if(auth()->user()->isAdmin())
-                        <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
-                            {{ __('Users') }}
-                        </x-jet-nav-link>
-                    @endif
                 </div>
             </div>
 
@@ -97,6 +91,22 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Admin Menu') }}
+                            </div>
+
+                            <x-jet-dropdown-link href="{{ route('admin.tags-type.index') }}">
+                                {{ __('Tags Type') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{ route('admin.tags.index') }}">
+                                {{ __('Tags') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{ route('admin.users.index') }}">
+                                {{ __('Users') }}
+                            </x-jet-dropdown-link>
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}

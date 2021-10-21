@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\TagsTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +30,16 @@ Route::prefix('/dashboard')->middleware(['auth:sanctum', 'verified'])->group(fun
             Route::get('edit/{user}', [AdminUserController::class, 'edit'])->name('edit');
         });
 
-//        Route::resource('users', AdminUserController::class);
+        Route::prefix('tags-type')->name('tags-type.')->group(function() {
+            Route::get('/', [TagsTypeController::class, 'index'])->name('index');
+            Route::get('create', [TagsTypeController::class, 'create'])->name('create');
+            Route::get('edit/{tagsType}', [TagsTypeController::class, 'edit'])->name('edit');
+        });
+
+        Route::prefix('tags')->name('tags.')->group(function() {
+            Route::get('/', [TagController::class, 'index'])->name('index');
+            Route::get('create', [TagController::class, 'create'])->name('create');
+            Route::get('edit/{tag}', [TagController::class, 'edit'])->name('edit');
+        });
     });
 });

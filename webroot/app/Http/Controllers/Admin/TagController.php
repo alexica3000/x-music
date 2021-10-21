@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Tag;
 use Illuminate\View\View;
 
 /**
- * Class AdminUserController
+ * Class TagController
  * @package App\Http\Controllers\Admin
  */
-class AdminUserController extends Controller
+class TagController extends Controller
 {
     /**
      * @return View
      */
     public function index(): View
     {
-        return view('admin.users.index');
+        return view('admin.tags.index');
     }
 
     /**
@@ -25,15 +25,15 @@ class AdminUserController extends Controller
      */
     public function create(): View
     {
-        return view('admin.users.create');
+        return view('admin.tags.create');
     }
 
     /**
-     * @param User $user
+     * @param Tag $tag
      * @return View
      */
-    public function edit(User $user): View
+    public function edit(Tag $tag): View
     {
-        return view('admin.users.edit', compact('user'));
+        return view('admin.tags.edit', compact('tag'));
     }
 }

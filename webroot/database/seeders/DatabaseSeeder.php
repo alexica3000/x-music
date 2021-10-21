@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Database\Seeders\Live\AdminSeeder;
+use Database\Seeders\Live\TagsSeeder;
+use Database\Seeders\Live\TagsTypeSeeder;
 use Illuminate\Database\Seeder;
 
 /**
@@ -20,6 +22,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
+            TagsTypeSeeder::class,
+            TagsSeeder::class,
         ]);
     }
 }
