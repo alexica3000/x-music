@@ -14,6 +14,7 @@ use Livewire\Component;
  */
 class TagForm extends Component
 {
+    /** @var Tag $tag */
     public Tag $tag;
 
     public function render(): View
@@ -33,8 +34,16 @@ class TagForm extends Component
     {
         $data = $this->validate();
         $data['tag']['slug'] = Str::slug($data['tag']['name']);
+        $data['tag']['is_live'] = $data['tag']['is_live'] ?? 0;
 
-        $this->tag->id ? $this->tag->update($data['tag']) : Tag::query()->create($data['tag']);
+        if ($this->tag->id) {
+            $this->tag->update($data['tag']);
+        } else {
+            /** @var Tag $tag */
+            $tag = Tag::query()->create($data['tag']);
+            $this->tag = $tag;
+        }
+
         $this->emit('showNotification', 'Tag type has been saved.');
     }
 
