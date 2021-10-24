@@ -3,6 +3,13 @@
         <h1 class="font-bold text-gray-600 text-xl">
             {{ $tag->id ? 'Edit tag' : 'Add tag'  }}
         </h1>
+        @if($tag->id)
+            <div class="ml-3" role="button" wire:click="deleteConfirm({{ $tag->id }})">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </div>
+        @endif
     </div>
 
     <div class="grid grid-cols-3 gap-2 mt-3">
@@ -88,4 +95,24 @@
         </div>
 
     </div>
+
+    <x-jet-confirmation-modal wire:model="confirmingTagDeletion">
+        <x-slot name="title">
+            Delete Tag
+        </x-slot>
+
+        <x-slot name="content">
+            Are you sure you want to delete this tag?
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingTagDeletion')" wire:loading.attr="disabled">
+                Nevermind
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="deleteTag({{ $tag->id }})" wire:loading.attr="disabled">
+                Delete Tag
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
 </div>
