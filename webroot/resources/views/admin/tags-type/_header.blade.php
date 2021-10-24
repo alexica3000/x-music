@@ -1,7 +1,7 @@
 <x-slot name="header">
     <h2 class="flex font-semibold text-xl text-gray-800 leading-tight">
         <div class="mr-2">
-            {{ __('Tags Types') }}
+            <a href="{{ route('admin.tags-type.index') }}">{{ __('Tags Types') }}</a>
         </div>
         <div class="h-6 w-6">
             <a href="{{ route('admin.tags-type.create') }}">

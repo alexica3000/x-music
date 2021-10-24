@@ -1,7 +1,7 @@
 <x-slot name="header">
     <h2 class="flex font-semibold text-xl text-gray-800 leading-tight">
         <div class="mr-2">
-            {{ __('Users') }}
+            <a href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
         </div>
         <div class="h-6 w-6">
             <a href="{{ route('admin.users.create') }}">
