@@ -29,7 +29,7 @@ class TagFactory extends Factory
             'name'         => $name,
             'slug'         => Str::slug($name),
             'tags_type_id' => Arr::random(TagsType::query()->pluck('id')->toArray()),
-            'is_live'      => 1,
+            'is_live'      => rand(0, 1),
         ];
     }
 }
