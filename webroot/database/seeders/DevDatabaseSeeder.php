@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\Dev\DevKeysSeeder;
 use Database\Seeders\Dev\DevTagsSeeder;
+use Database\Seeders\Dev\DevTracksSeeder;
 use Database\Seeders\Dev\DevUsersSeeder;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,7 @@ class DevDatabaseSeeder extends Seeder
             DevUsersSeeder::class,
             DevTagsSeeder::class,
             DevKeysSeeder::class,
+            DevTracksSeeder::class,
         ]);
     }
 }
