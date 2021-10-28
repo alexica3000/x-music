@@ -19,6 +19,11 @@ class DevUsersSeeder extends Seeder
      */
     public function run()
     {
-         User::factory(1000)->create();
+        $users = User::factory(10000)->make();
+        $chunks = $users->chunk(1000);
+
+        $chunks->each(function ($chunk) {
+            User::query()->insert($chunk->toArray());
+        });
     }
 }

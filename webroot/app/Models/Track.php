@@ -23,6 +23,11 @@ class Track extends Model
 
     protected $fillable = ['name', 'mp3_url', 'agreement_url', 'length', 'is_live', 'notes', 'bpm'];
 
+    protected $cast = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     /**
      * @return BelongsTo
      */

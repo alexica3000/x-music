@@ -18,6 +18,11 @@ class DevTagsSeeder extends Seeder
      */
     public function run()
     {
-         Tag::factory(1000)->create();
+        $tags = Tag::factory(1000)->make();
+        $chunks = $tags->chunk(100);
+
+        $chunks->each(function ($chunk) {
+            Tag::query()->insert($chunk->toArray());
+        });
     }
 }

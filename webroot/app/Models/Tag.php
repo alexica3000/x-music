@@ -23,6 +23,11 @@ class Tag extends Model
     protected $fillable = ['name', 'slug', 'is_live', 'tags_type_id'];
     protected $perPage = 20;
 
+    protected $cast = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     /**
      * @return BelongsTo
      */

@@ -18,6 +18,11 @@ class DevTracksSeeder extends Seeder
      */
     public function run()
     {
-         Track::factory(10000)->create();
+        $tracks = Track::factory(10000)->make();
+        $chunks = $tracks->chunk(1000);
+
+        $chunks->each(function ($chunk) {
+            Track::query()->insert($chunk->toArray());
+        });
     }
 }
