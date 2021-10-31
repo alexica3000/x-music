@@ -107,6 +107,10 @@
                                 {{ __('Users') }}
                             </x-jet-dropdown-link>
 
+                            <x-jet-dropdown-link href="{{ route('admin.tracks.index') }}">
+                                {{ __('Tracks') }}
+                            </x-jet-dropdown-link>
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}

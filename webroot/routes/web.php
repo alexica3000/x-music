@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TagsTypeController;
+use App\Http\Controllers\Admin\TrackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,12 @@ Route::prefix('/dashboard')->middleware(['auth:sanctum', 'verified'])->group(fun
             Route::get('/', [TagController::class, 'index'])->name('index');
             Route::get('create', [TagController::class, 'create'])->name('create');
             Route::get('edit/{tag}', [TagController::class, 'edit'])->name('edit');
+        });
+
+        Route::prefix('tracks')->name('tracks.')->group(function() {
+            Route::get('/', [TrackController::class, 'index'])->name('index');
+            Route::get('create', [TrackController::class, 'create'])->name('create');
+            Route::get('edit/{track}', [TrackController::class, 'edit'])->name('edit');
         });
     });
 });
