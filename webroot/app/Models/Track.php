@@ -21,6 +21,8 @@ class Track extends Model
 {
     use HasFactory;
 
+    protected $perPage = 30;
+
     protected $fillable = ['name', 'mp3_url', 'agreement_url', 'length', 'is_live', 'notes', 'bpm'];
 
     protected $cast = [
