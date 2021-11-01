@@ -18,7 +18,7 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->foreignId("tags_type_id")->references("id")->on("tags_types")->cascadeOnDelete();
             $table->boolean('is_live')->default(0);

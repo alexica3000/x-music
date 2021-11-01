@@ -61,13 +61,13 @@ class User extends Authenticatable implements HasRolesInterface
     ];
 
     /**
-     * The attributes that should be cast.
-     *
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'created_at' => 'datetime',
+        'created_at'        => 'datetime',
+        'updated_at'        => 'datetime',
+        'profile_photo_url' => 'string',
     ];
 
     /**

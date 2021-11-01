@@ -14,7 +14,9 @@ use Livewire\Component;
  */
 class TagForm extends Component
 {
+    /** @var Tag $tag */
     public Tag $tag;
+    public bool $confirmingTagDeletion = false;
 
     public function render(): View
     {
@@ -32,9 +34,17 @@ class TagForm extends Component
     public function save(): void
     {
         $data = $this->validate();
-        $data['tag']['slug'] = Str::slug($data['tag']['name']);
+        $data['tag']['slug'] = !empty($data['tag']['slug']) ? $data['tag']['slug'] : Str::slug($data['tag']['name']);
+        $data['tag']['is_live'] = $data['tag']['is_live'] ?? 0;
 
-        $this->tag->id ? $this->tag->update($data['tag']) : Tag::query()->create($data['tag']);
+        if ($this->tag->id) {
+            $this->tag->update($data['tag']);
+        } else {
+            /** @var Tag $tag */
+            $tag = Tag::query()->create($data['tag']);
+            $this->tag = $tag;
+        }
+
         $this->emit('showNotification', 'Tag type has been saved.');
     }
 
@@ -46,5 +56,17 @@ class TagForm extends Component
             'tag.is_live'      => 'sometimes|nullable|boolean',
             'tag.slug'         => 'nullable|string|max:50',
         ];
+    }
+
+    public function deleteConfirm(): void
+    {
+        $this->confirmingTagDeletion = true;
+    }
+
+    public function deleteTag(Tag $tag)
+    {
+        $tag->delete();
+
+        return redirect()->route('admin.tags.index');
     }
 }

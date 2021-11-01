@@ -2,14 +2,14 @@
 
 namespace Database\Seeders\Dev;
 
-use App\Models\Tag;
+use App\Models\Track;
 use Illuminate\Database\Seeder;
 
 /**
- * Class DevTagsSeeder
+ * Class DevTracksSeeder
  * @package Database\Seeders\Dev
  */
-class DevTagsSeeder extends Seeder
+class DevTracksSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,11 +18,11 @@ class DevTagsSeeder extends Seeder
      */
     public function run()
     {
-        $tags = Tag::factory(1000)->make();
-        $chunks = $tags->chunk(100);
+        $tracks = Track::factory(10000)->make();
+        $chunks = $tracks->chunk(1000);
 
         $chunks->each(function ($chunk) {
-            Tag::query()->insert($chunk->toArray());
+            Track::query()->insert($chunk->toArray());
         });
     }
 }

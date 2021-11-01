@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Key;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class KeyFactory extends Factory
 {
@@ -19,10 +20,12 @@ class KeyFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
+        $name = $this->faker->unique()->word;
+
         return [
-            //
+            'name' => $name,
         ];
     }
 }
