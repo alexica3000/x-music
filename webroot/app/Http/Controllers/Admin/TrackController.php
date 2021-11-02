@@ -20,9 +20,9 @@ class TrackController extends Controller
         return view('admin.tracks.index');
     }
 
-    public function create()
+    public function create(): View
     {
-
+        return view('admin.tracks.create');
     }
 
     public function edit()

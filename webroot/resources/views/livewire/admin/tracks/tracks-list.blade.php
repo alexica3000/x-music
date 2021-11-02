@@ -17,16 +17,6 @@
                 </svg>
             </button>
         </div>
-{{--        <div class="ml-5 w-1/6">--}}
-{{--            <label>--}}
-{{--                <select class="form-select block w-full rounded shadow-md border-gray-400 h-10" wire:model="tagTypeId">--}}
-{{--                    <option value="">Type</option>--}}
-{{--                    @foreach($tagsTypes as $index => $type)--}}
-{{--                        <option value="{{ $index }}">{{ $type }}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
-{{--            </label>--}}
-{{--        </div>--}}
         <div class="ml-5 w-1/6">
             <label>
                 <select class="form-select block w-full rounded shadow-md border-gray-400 h-10" wire:model="active">

@@ -1,5 +1,5 @@
 <x-app-layout>
-    @include('admin.users._header')
+    @include('admin.tracks._header')
 
     <x-main-wrapper>
         <livewire:admin.tag-form :tag="$tag" />

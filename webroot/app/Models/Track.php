@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $is_live
  * @property string|null $notes
  * @property int|null $bpm
+ * @property int $id
  */
 class Track extends Model
 {
